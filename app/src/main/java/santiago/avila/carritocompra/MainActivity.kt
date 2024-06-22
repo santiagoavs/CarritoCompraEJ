@@ -46,12 +46,10 @@ class MainActivity : AppCompatActivity() {
 
     fun leerSharedPreferences() {
         val sp = this.getSharedPreferences("carro_compras", MODE_PRIVATE)
-
         val jsonString = sp.getString("productos", "")
 
-        val jsonArray = JSONArray(jsonString)
-
-        if (jsonArray != null) {
+        if (!jsonString.isNullOrEmpty()) {
+            val jsonArray = JSONArray(jsonString)
             for (i in 0 until jsonArray.length()) {
                 val jsonObject = jsonArray.getJSONObject(i)
                 carroCompras.add(
@@ -65,4 +63,5 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
 }
